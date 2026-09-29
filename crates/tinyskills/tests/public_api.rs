@@ -3,8 +3,8 @@
 use std::fs;
 
 use tinyskills::{
-    BundledFile, BundledSkill, DiscoveryRoot, SkillScope, discover, inventory_resources,
-    parse_skill_str, read_resource,
+    BundledFile, BundledSkill, DiscoveryRoot, SkillFrontmatter, SkillScope, discover,
+    inventory_resources, parse_skill_str, read_resource,
 };
 
 #[test]
@@ -14,6 +14,55 @@ fn parses_scalar_tool_lists_and_preserves_body() -> Result<(), Box<dyn std::erro
     assert_eq!(frontmatter.allowed_tools, ["Bash", "Read"]);
     assert_eq!(body, "Do it.\n");
     assert!(warnings.is_empty());
+    Ok(())
+}
+
+fn frontmatter(yaml: &str) -> Result<SkillFrontmatter, serde_yaml::Error> {
+    serde_yaml::from_str(yaml)
+}
+
+#[test]
+fn allowed_tools_accepts_a_yaml_sequence() -> Result<(), Box<dyn std::error::Error>> {
+    let fm = frontmatter("allowed-tools:\n  - Bash\n  - Read\n")?;
+    assert_eq!(fm.allowed_tools, ["Bash", "Read"]);
+    Ok(())
+}
+
+#[test]
+fn allowed_tools_accepts_a_comma_joined_string() -> Result<(), Box<dyn std::error::Error>> {
+    let fm = frontmatter("allowed-tools: Bash, Read, Grep, Skill, WebFetch")?;
+    assert_eq!(
+        fm.allowed_tools,
+        ["Bash", "Read", "Grep", "Skill", "WebFetch"]
+    );
+    Ok(())
+}
+
+#[test]
+fn allowed_tools_trims_whitespace_and_drops_empty_tokens() -> Result<(), Box<dyn std::error::Error>>
+{
+    let fm = frontmatter(r#"allowed-tools: " Bash, , Read, ""#)?;
+    assert_eq!(fm.allowed_tools, ["Bash", "Read"]);
+    Ok(())
+}
+
+#[test]
+fn allowed_tools_accepts_the_tools_and_snake_case_aliases() -> Result<(), Box<dyn std::error::Error>>
+{
+    assert_eq!(
+        frontmatter("tools: Bash, Read")?.allowed_tools,
+        ["Bash", "Read"]
+    );
+    assert_eq!(
+        frontmatter("allowed_tools: Bash, Read")?.allowed_tools,
+        ["Bash", "Read"]
+    );
+    Ok(())
+}
+
+#[test]
+fn allowed_tools_defaults_to_empty_when_absent() -> Result<(), Box<dyn std::error::Error>> {
+    assert!(frontmatter("name: foo")?.allowed_tools.is_empty());
     Ok(())
 }
 
