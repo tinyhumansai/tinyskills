@@ -11,6 +11,12 @@ policy, execution, approvals, RPC/controller schemas, event buses, and UI.
 Keep product names, product environment variables, and product-specific paths
 out of this crate; accept roots and policy inputs at the API boundary instead.
 
+Network I/O is host-supplied through `RegistryTransport`; the crate links no
+HTTP client. The `registry` feature owns the request guard (scheme, DNS
+pinning, redirect re-validation, size and time limits), caching and search;
+the host owns the HTTP stack, TLS, where the catalog store lives, and what to
+do with a fetched document.
+
 ## Structure
 
 ```text
@@ -32,6 +38,7 @@ crates/tinyskills/
 │   ├── scan/           # supply-chain scan of untrusted skill text, catalogue sanitizer
 │   ├── slug.rs         # host slug rules: length cap, reserved names, punctuation, fallback
 │   ├── archive.rs      # `archive` feature: zip/tar upload reader
+│   ├── registry/       # `registry` feature: transport contract, fetch guard, sources, index, store, SkillRegistry
 │   ├── resource.rs     # safe lookup and resource reads
 │   ├── materialize.rs  # rebuild a skill tree from documents and bundle dirs
 │   └── bundle.rs       # compile-time bundle materialization
@@ -46,6 +53,10 @@ crates/tinyskills/
     ├── install.rs
     ├── materialize.rs
     ├── public_api.rs
+    ├── registry.rs
+    ├── registry_loopback.rs
+    ├── support/        # registry test doubles and a loopback HTTP server
+    ├── fixtures/       # captured upstream data
     ├── remove.rs
     ├── resource_symlinks.rs
     └── trigger.rs
@@ -63,6 +74,7 @@ cargo fmt --all -- --check
 cargo clippy --all-targets --all-features -- -D warnings
 cargo build --all-targets --all-features
 cargo test --all-features
+cargo test --features registry
 ```
 
 Tests must be deterministic and avoid network access, wall-clock assumptions,

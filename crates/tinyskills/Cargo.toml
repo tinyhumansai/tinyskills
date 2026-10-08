@@ -29,9 +29,13 @@ cap-fs-ext.workspace = true
 # skill archive, refusing traversal, links, nested archives and bombs. Off by
 # default so a host that never accepts uploads links no archive code.
 archive = ["dep:zip", "dep:tar", "dep:flate2"]
+# `SkillRegistry`: cached, searchable skill catalogs fetched through a
+# host-supplied `RegistryTransport`. The crate links no HTTP client.
+registry = ["tokio/sync", "tokio/time"]
 
 [dev-dependencies]
 tempfile.workspace = true
+tokio = { workspace = true, features = ["io-util", "sync", "test-util", "time"] }
 
 [lints]
 workspace = true

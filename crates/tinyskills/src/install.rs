@@ -322,7 +322,7 @@ pub fn is_private_or_local_host(host: &str) -> bool {
     })
 }
 
-fn is_non_global_v4(ip: Ipv4Addr) -> bool {
+pub(crate) fn is_non_global_v4(ip: Ipv4Addr) -> bool {
     let [a, b, c, _] = ip.octets();
     ip.is_loopback()
         || ip.is_private()
@@ -340,7 +340,7 @@ fn is_non_global_v4(ip: Ipv4Addr) -> bool {
         || a == 0
 }
 
-fn is_non_global_v6(ip: Ipv6Addr) -> bool {
+pub(crate) fn is_non_global_v6(ip: Ipv6Addr) -> bool {
     let segments = ip.segments();
     ip.is_loopback()
         || ip.is_unspecified()

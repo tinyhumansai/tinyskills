@@ -6,10 +6,12 @@
 - deterministic multi-root discovery and scope collision handling
 - hardened resource inventory and reads
 - compile-time bundle validation and materialization
+- catalog operations: cached, searchable registries over a host-supplied
+  transport (`registry` feature)
 
 ## Next
 
-- move host-independent create, install, and catalog operations behind
+- move host-independent create and install operations behind
   root/configuration objects
 - provide optional webhook routing primitives without product event-bus coupling
 
