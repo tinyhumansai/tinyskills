@@ -680,7 +680,7 @@ dependencies = [
 
 [[package]]
 name = "tinyskills"
-version = "0.2.9"
+version = "0.2.10"
 dependencies = [
  "cap-fs-ext",
  "cap-std",
