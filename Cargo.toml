@@ -26,7 +26,7 @@ cap-std = "4"
 cap-fs-ext = "4"
 # Reading uploaded skill archives (the optional `archive` feature): zip with
 # deflate only, tar, and gzip for `.tar.gz`.
-zip = { version = "7", default-features = false, features = ["deflate"] }
+zip = { version = "8", default-features = false, features = ["deflate"] }
 tar = { version = "0.4", default-features = false }
 flate2 = "1"
 
