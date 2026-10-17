@@ -35,7 +35,7 @@ archive = ["dep:zip", "dep:tar", "dep:flate2"]
 registry = ["tokio/sync", "tokio/time"]
 
 [dev-dependencies]
-toml = "0.9"
+toml = "1.1"
 tempfile.workspace = true
 tokio = { workspace = true, features = ["io-util", "sync", "test-util", "time"] }
 
