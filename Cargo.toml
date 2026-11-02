@@ -34,9 +34,9 @@ flate2 = "1"
 # that links tinytools through its own patch table resolves one package.
 tinytools = { version = "0.6", git = "https://github.com/tinyhumansai/tinytools", rev = "41cc80ac9acf37a14f20be94f60ee552749f1540", default-features = false }
 # Storage contracts only; engines are provided by each embedding host.
-tinystoragedrivers-api = { version = "2.1.1", git = "https://github.com/tinyhumansai/tinystoragedrivers", rev = "bf1f0a97fbe6165a6edd9521659c7f6859700761" }
-tinystoragedrivers-types = { version = "2.1.1", git = "https://github.com/tinyhumansai/tinystoragedrivers", rev = "bf1f0a97fbe6165a6edd9521659c7f6859700761" }
-tinystoragedrivers-testkit = { version = "2.1.1", git = "https://github.com/tinyhumansai/tinystoragedrivers", rev = "bf1f0a97fbe6165a6edd9521659c7f6859700761" }
+tinystoragedrivers-api = { version = "2.1.2", git = "https://github.com/tinyhumansai/tinystoragedrivers", rev = "6226b9484c8bd01c58741718cd89ba90a13a36bb" }
+tinystoragedrivers-types = { version = "2.1.2", git = "https://github.com/tinyhumansai/tinystoragedrivers", rev = "6226b9484c8bd01c58741718cd89ba90a13a36bb" }
+tinystoragedrivers-testkit = { version = "2.1.2", git = "https://github.com/tinyhumansai/tinystoragedrivers", rev = "6226b9484c8bd01c58741718cd89ba90a13a36bb" }
 
 # Lints apply to every member that opts in with `[lints] workspace = true`, and
 # to every target of that member. CI runs clippy with `-D warnings`, so anything
