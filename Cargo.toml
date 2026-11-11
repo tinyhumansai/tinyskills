@@ -6,7 +6,7 @@ exclude = ["vendor", "worktrees"]
 [workspace.package]
 version = "0.5.2"
 edition = "2024"
-rust-version = "1.88"
+rust-version = "1.89"
 license = "GPL-3.0-only"
 repository = "https://github.com/tinyhumansai/tinyskills"
 
@@ -34,9 +34,9 @@ flate2 = "1"
 # that links tinytools through its own patch table resolves one package.
 tinytools = { version = "0.6", git = "https://github.com/tinyhumansai/tinytools", rev = "41cc80ac9acf37a14f20be94f60ee552749f1540", default-features = false }
 # Storage contracts only; engines are provided by each embedding host.
-tinystoragedrivers-api = { version = "2.1.2", git = "https://github.com/tinyhumansai/tinystoragedrivers", rev = "6226b9484c8bd01c58741718cd89ba90a13a36bb" }
-tinystoragedrivers-types = { version = "2.1.2", git = "https://github.com/tinyhumansai/tinystoragedrivers", rev = "6226b9484c8bd01c58741718cd89ba90a13a36bb" }
-tinystoragedrivers-testkit = { version = "2.1.2", git = "https://github.com/tinyhumansai/tinystoragedrivers", rev = "6226b9484c8bd01c58741718cd89ba90a13a36bb" }
+tinystoragedrivers-api = { version = "2.1.3", git = "https://github.com/tinyhumansai/tinystoragedrivers", rev = "f5a33025b9feaa36fea522cce764fe8c796e5139" }
+tinystoragedrivers-types = { version = "2.1.3", git = "https://github.com/tinyhumansai/tinystoragedrivers", rev = "f5a33025b9feaa36fea522cce764fe8c796e5139" }
+tinystoragedrivers-testkit = { version = "2.1.3", git = "https://github.com/tinyhumansai/tinystoragedrivers", rev = "f5a33025b9feaa36fea522cce764fe8c796e5139" }
 
 # Lints apply to every member that opts in with `[lints] workspace = true`, and
 # to every target of that member. CI runs clippy with `-D warnings`, so anything
